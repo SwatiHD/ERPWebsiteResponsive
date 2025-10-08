@@ -1,0 +1,31 @@
+[
+  {
+    "iconList": [
+      {
+        "id": 1,
+        "icon": "fa-solid fa-list fa-1x my-9",
+        "desc": "Task Management"
+      },
+      {
+        "id": 2,
+        "icon": "fa-solid fa-landmark fa-1x my-9",
+        "desc": "Project Management"
+      },
+      {
+        "id": 3,
+        "icon": "fa-solid fa-square-poll-vertical fa-1x my-9",
+        "desc": "DashBoard"
+      },
+      {
+        "id": 4,
+        "icon": "fa-solid fa-shop fa-1x my-9",
+        "desc": "Sales"
+      },
+      {
+        "id": 5,
+        "icon": "fa-solid fa-clipboard-check fa-1x my-9",
+        "desc": "Approvals"
+      }
+    ]
+  }
+]
