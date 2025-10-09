@@ -5,7 +5,6 @@ import { Suspense, lazy } from "react";
 import SuspenseContent from "./SuspenseContent";
 import { useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
-import FormComponent from "../pages/protected/FormComponent";
 
 const Page404 = lazy(() => import("../pages/protected/404"));
 

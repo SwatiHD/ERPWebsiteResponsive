@@ -13,6 +13,7 @@ import {
   TableCellsIcon,
   CodeBracketSquareIcon,
 } from "@heroicons/react/24/outline";
+import InboxArrowDownIcon from "@heroicons/react/24/outline/InboxArrowDownIcon";
 
 const iconClasses = `h-6 w-6`;
 const submenuIconClasses = `h-5 w-5`;
@@ -22,13 +23,30 @@ const Sidebar = async () => {
     const res = await fetch("/data/icons.json");
     const data = await res.json();
 
-    const dynamicRoutes = data[0].iconList.map((item) => ({
-      path: `/app/${item.desc.toLowerCase().replace(/\s+/g, "")}`,
-      icon: <i className={`${item.icon}`}></i>,
-      name: item.desc,
-    }));
+    // const dynamicRoutes = data[0].iconList.map((item) => ({
+    //   path: `/app/${item.desc.toLowerCase().replace(/\s+/g, "")}`,
+    //   icon: <i className={`${item.icon}`}></i>,
+    //   name: item.desc,
+    // }));
+    const dynamicRoutes = data.flatMap((section) =>
+      (section.iconList || []).map((item) => ({
+        path: `/app/${item.desc.toLowerCase().replace(/\s+/g, "")}`,
+        icon: <i className={item.icon}></i>,
+        name: item.desc,
+      }))
+    );
 
-    const staticRoutes = [
+    const routes = [
+      {
+        path: "/app/taskmanagement",
+        icon: <i className="fa-solid fa-list-check"></i>,
+        name: "Task Management",
+      },
+      {
+        path: "/app/projectmanagement",
+        icon: <i className="fa-solid fa-landmark"></i>,
+        name: "Project Management",
+      },
       {
         path: "",
         icon: <DocumentDuplicateIcon className={`${iconClasses} inline`} />,
@@ -107,7 +125,7 @@ const Sidebar = async () => {
       },
     ];
 
-    return [...dynamicRoutes, ...staticRoutes];
+    return [...dynamicRoutes, ...routes];
   } catch (err) {
     console.error("Failed to load icons:", err);
     return [];
