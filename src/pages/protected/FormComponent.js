@@ -1,18 +1,15 @@
-import react from "react";
+import React from "react";
 
-const FormComponent = ({ show, onClose, children }) => {
-  if (!show) {
-    return null; // Don't render if 'show' is false
-  }
-
+const FormComponent = () => {
   return (
-    <div className="popup-overlay" onClick={onClose}>
-      <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-        <button className="close-button" onClick={onClose}>
-          &times;
-        </button>
-        {children}
-      </div>
+    <div>
+      <h2>Create New Task</h2>
+      <form className="h-full w-full">
+        <label htmlFor="name">Name:</label>
+        <input type="text" id="name" name="name" />
+        <br />
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 };

@@ -2,15 +2,14 @@ import { useEffect, useState } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import SidebarSubmenu from "./SidebarSubmenu";
 import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon";
-import { getRoutesFromSidebar } from "../routes/Sidebar";
-
+import Sidebar from "../routes/Sidebar";
 function LeftSidebar() {
   const [routes, setRoutes] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
     const loadRoutes = async () => {
-      const data = await getRoutesFromSidebar();
+      const data = await Sidebar();
       setRoutes(data);
     };
 

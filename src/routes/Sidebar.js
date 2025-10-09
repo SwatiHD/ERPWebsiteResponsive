@@ -17,7 +17,7 @@ import {
 const iconClasses = `h-6 w-6`;
 const submenuIconClasses = `h-5 w-5`;
 
-export const getRoutesFromSidebar = async () => {
+const Sidebar = async () => {
   try {
     const res = await fetch("/data/icons.json");
     const data = await res.json();
@@ -113,3 +113,5 @@ export const getRoutesFromSidebar = async () => {
     return [];
   }
 };
+
+export default Sidebar;
