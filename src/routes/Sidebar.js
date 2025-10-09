@@ -38,16 +38,6 @@ const Sidebar = async () => {
 
     const routes = [
       {
-        path: "/app/taskmanagement",
-        icon: <i className="fa-solid fa-list-check"></i>,
-        name: "Task Management",
-      },
-      {
-        path: "/app/projectmanagement",
-        icon: <i className="fa-solid fa-landmark"></i>,
-        name: "Project Management",
-      },
-      {
         path: "",
         icon: <DocumentDuplicateIcon className={`${iconClasses} inline`} />,
         name: "Pages",
