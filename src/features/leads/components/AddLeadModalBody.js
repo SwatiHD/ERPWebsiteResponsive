@@ -53,7 +53,7 @@ function AddLeadModalBody({ closeModal }) {
 
   return (
     <>
-      <InputText
+      {/* <InputText
         type="text"
         defaultValue={leadObj.first_name}
         updateType="first_name"
@@ -69,108 +69,121 @@ function AddLeadModalBody({ closeModal }) {
         containerStyle="mt-4"
         labelTitle="Last Name"
         updateFormValue={updateFormValue}
+      /> */}
+      <InputText
+        type="text"
+        defaultValue={"Project ID"}
+        updateType="first_name"
+        containerStyle="mt-3"
+        labelTitle="Project ID"
+        // updateFormValue={updateFormValue}
       />
-
+      <InputText
+        type="text"
+        defaultValue={"Task Number"}
+        updateType="first_name"
+        containerStyle="mt-3"
+        labelTitle="Task Number"
+        // updateFormValue={updateFormValue}
+      />
+      <div className="pt-5 flex-1 pl-2">
+        Module
+        <div className="flex-1 -pl-4">
+          <SelectBox
+            options={periodOptions}
+            labelTitle="Module"
+            placeholder="Select priority"
+            containerStyle="w-72"
+            labelStyle="hidden"
+            defaultValue="module"
+            //  updateFormValue={updateSelectBoxValue}
+          />
+        </div>
+      </div>
+      Priority
       <SelectBox
         options={periodOptions}
-        labelTitle="Period"
-        placeholder="Select date range"
+        labelTitle="Priority"
+        placeholder="Select priority"
         containerStyle="w-72"
         labelStyle="hidden"
-        defaultValue="TODAY"
+        defaultValue="priority"
         //  updateFormValue={updateSelectBoxValue}
       />
+      Parent Task ID
       <SelectBox
         options={periodOptions}
-        labelTitle="Period"
-        placeholder="Select date range"
+        labelTitle="Parent Task ID"
+        placeholder="Select priority"
         containerStyle="w-72"
         labelStyle="hidden"
-        defaultValue="TODAY"
-        //  updateFormValue={updateSelectBoxValue}
+        defaultValue="parent task id"
+        // updateFormValue={updateSelectBoxValue}
       />
+      <InputText
+        type="text"
+        defaultValue={"Status"}
+        updateType="first_name"
+        containerStyle="mt-3"
+        labelTitle="Status"
+        // updateFormValue={updateFormValue}
+      />
+      <InputText
+        type="text"
+        defaultValue={"Customer ID"}
+        updateType="first_name"
+        containerStyle="mt-3"
+        labelTitle="Customer ID"
+        // updateFormValue={updateFormValue}
+      />
+      Task Date
       <SelectBox
         options={periodOptions}
-        labelTitle="Period"
-        placeholder="Select date range"
+        labelTitle="Task Date"
+        placeholder="Select Task Date"
         containerStyle="w-72"
         labelStyle="hidden"
-        defaultValue="TODAY"
-        //  updateFormValue={updateSelectBoxValue}
+        defaultValue="taskDate"
+        // updateFormValue={updateSelectBoxValue}
       />
+      End Date
       <SelectBox
         options={periodOptions}
-        labelTitle="Period"
-        placeholder="Select date range"
+        labelTitle="End Date"
+        placeholder="Select End Date"
         containerStyle="w-72"
         labelStyle="hidden"
-        defaultValue="TODAY"
-        //  updateFormValue={updateSelectBoxValue}
+        defaultValue="endDate"
+        // updateFormValue={updateSelectBoxValue}
       />
+      Activity
       <SelectBox
         options={periodOptions}
-        labelTitle="Period"
-        placeholder="Select date range"
+        labelTitle="Activity"
+        placeholder="Select activity"
         containerStyle="w-72"
         labelStyle="hidden"
-        defaultValue="TODAY"
-        //  updateFormValue={updateSelectBoxValue}
+        defaultValue="activity"
+        // updateFormValue={updateSelectBoxValue}
       />
+      Assign To
       <SelectBox
         options={periodOptions}
-        labelTitle="Period"
-        placeholder="Select date range"
+        labelTitle="Assign To"
+        placeholder="select assignto"
         containerStyle="w-72"
         labelStyle="hidden"
-        defaultValue="TODAY"
-        //  updateFormValue={updateSelectBoxValue}
+        defaultValue="assignTo"
+        // updateFormValue={updateSelectBoxValue}
       />
-      <SelectBox
-        options={periodOptions}
-        labelTitle="Period"
-        placeholder="Select date range"
-        containerStyle="w-72"
-        labelStyle="hidden"
-        defaultValue="TODAY"
-        //  updateFormValue={updateSelectBoxValue}
+      <InputText
+        type="textarea"
+        defaultValue={"Comments"}
+        updateType="first_name"
+        containerStyle="mt-3"
+        labelTitle="Comments"
+        // updateFormValue={updateFormValue}
       />
-      <SelectBox
-        options={periodOptions}
-        labelTitle="Period"
-        placeholder="Select date range"
-        containerStyle="w-72"
-        labelStyle="hidden"
-        defaultValue="TODAY"
-        //  updateFormValue={updateSelectBoxValue}
-      />
-      <SelectBox
-        options={periodOptions}
-        labelTitle="Period"
-        placeholder="Select date range"
-        containerStyle="w-72"
-        labelStyle="hidden"
-        defaultValue="TODAY"
-        //  updateFormValue={updateSelectBoxValue}
-      />
-      <SelectBox
-        options={periodOptions}
-        labelTitle="Period"
-        placeholder="Select date range"
-        containerStyle="w-72"
-        labelStyle="hidden"
-        defaultValue="TODAY"
-        //  updateFormValue={updateSelectBoxValue}
-      />
-      <SelectBox
-        options={periodOptions}
-        labelTitle="Period"
-        placeholder="Select date range"
-        containerStyle="w-72"
-        labelStyle="hidden"
-        defaultValue="TODAY"
-        //  updateFormValue={updateSelectBoxValue}
-      />
-
       <ErrorText styleClass="mt-16">{errorMessage}</ErrorText>
       <div className="modal-action">
         <button className="btn btn-ghost" onClick={() => closeModal()}>
