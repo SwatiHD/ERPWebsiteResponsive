@@ -11,7 +11,7 @@ function InternalPage() {
   }, []);
 
   return (
-    <div className="hero h-4/5 bg-base-200">
+    <div className="bg-base-100 h-full">
       {setPageTitle ? (
         <div>
           <h1>

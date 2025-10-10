@@ -72,7 +72,7 @@ function Leads() {
     <>
       <TitleCard
         title="Task List"
-        topMargin="mt-2"
+        topMargin=""
         TopSideButtons={<TopSideButtons />}
       >
         {/* Leads List in table format loaded from slice after api call */}
