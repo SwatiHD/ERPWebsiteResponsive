@@ -86,9 +86,9 @@ function AddLeadModalBody({ closeModal }) {
         labelTitle="Task Number"
         // updateFormValue={updateFormValue}
       />
-      <div className="pt-5 flex-1 pl-2">
-        Module
-        <div className="flex-1 -pl-4">
+      <div className="pt-5 flex-1">
+        <div className="pl-2">Module</div>
+        <div className="flex-1 pt-1 sm:w-3/100 md:w-48">
           <SelectBox
             options={periodOptions}
             labelTitle="Module"
@@ -100,26 +100,36 @@ function AddLeadModalBody({ closeModal }) {
           />
         </div>
       </div>
-      Priority
-      <SelectBox
-        options={periodOptions}
-        labelTitle="Priority"
-        placeholder="Select priority"
-        containerStyle="w-72"
-        labelStyle="hidden"
-        defaultValue="priority"
-        //  updateFormValue={updateSelectBoxValue}
-      />
-      Parent Task ID
-      <SelectBox
-        options={periodOptions}
-        labelTitle="Parent Task ID"
-        placeholder="Select priority"
-        containerStyle="w-72"
-        labelStyle="hidden"
-        defaultValue="parent task id"
-        // updateFormValue={updateSelectBoxValue}
-      />
+      <div className="pt-5 flex-1">
+        <div className="pl-2">Priority</div>
+
+        <div className="flex-1 pt-1">
+          <SelectBox
+            options={periodOptions}
+            labelTitle="Priority"
+            placeholder="Select priority"
+            containerStyle="w-72"
+            labelStyle="hidden"
+            defaultValue="priority"
+            //  updateFormValue={updateSelectBoxValue}
+          />
+        </div>
+      </div>
+      <div className="pt-5 flex-1">
+        <div className="pl-2">Parent Task ID</div>
+
+        <div className="flex-1 pt-1">
+          <SelectBox
+            options={periodOptions}
+            labelTitle="Parent Task ID"
+            placeholder="Select priority"
+            containerStyle="w-72"
+            labelStyle="hidden"
+            defaultValue="parent task id"
+            // updateFormValue={updateSelectBoxValue}
+          />
+        </div>
+      </div>
       <InputText
         type="text"
         defaultValue={"Status"}
@@ -136,46 +146,65 @@ function AddLeadModalBody({ closeModal }) {
         labelTitle="Customer ID"
         // updateFormValue={updateFormValue}
       />
-      Task Date
-      <SelectBox
-        options={periodOptions}
-        labelTitle="Task Date"
-        placeholder="Select Task Date"
-        containerStyle="w-72"
-        labelStyle="hidden"
-        defaultValue="taskDate"
-        // updateFormValue={updateSelectBoxValue}
-      />
-      End Date
-      <SelectBox
-        options={periodOptions}
-        labelTitle="End Date"
-        placeholder="Select End Date"
-        containerStyle="w-72"
-        labelStyle="hidden"
-        defaultValue="endDate"
-        // updateFormValue={updateSelectBoxValue}
-      />
-      Activity
-      <SelectBox
-        options={periodOptions}
-        labelTitle="Activity"
-        placeholder="Select activity"
-        containerStyle="w-72"
-        labelStyle="hidden"
-        defaultValue="activity"
-        // updateFormValue={updateSelectBoxValue}
-      />
-      Assign To
-      <SelectBox
-        options={periodOptions}
-        labelTitle="Assign To"
-        placeholder="select assignto"
-        containerStyle="w-72"
-        labelStyle="hidden"
-        defaultValue="assignTo"
-        // updateFormValue={updateSelectBoxValue}
-      />
+      <div className="pt-5 flex-1">
+        <div className="pl-2">Task Date</div>
+
+        <div className="flex-1 pt-1">
+          <SelectBox
+            options={periodOptions}
+            labelTitle="Task Date"
+            placeholder="Select Task Date"
+            containerStyle="w-72"
+            labelStyle="hidden"
+            defaultValue="taskDate"
+            // updateFormValue={updateSelectBoxValue}
+          />
+        </div>
+      </div>
+      <div className="pt-5 flex-1">
+        <div className="pl-2">End Date</div>
+
+        <div className="flex-1 pt-1">
+          <SelectBox
+            options={periodOptions}
+            labelTitle="End Date"
+            placeholder="Select End Date"
+            containerStyle="w-72"
+            labelStyle="hidden"
+            defaultValue="endDate"
+            // updateFormValue={updateSelectBoxValue}
+          />
+        </div>
+      </div>
+      <div className="pt-5 flex-1">
+        <div className="pl-2">Activity</div>
+
+        <div className="flex-1 pt-1">
+          <SelectBox
+            options={periodOptions}
+            labelTitle="Activity"
+            placeholder="Select activity"
+            containerStyle="w-72"
+            labelStyle="hidden"
+            defaultValue="activity"
+            // updateFormValue={updateSelectBoxValue}
+          />
+        </div>
+      </div>
+      <div className="pt-5 flex-1">
+        <div className="pl-2">Assign To</div>
+        <div className="flex-1 pt-1">
+          <SelectBox
+            options={periodOptions}
+            labelTitle="Assign To"
+            placeholder="select assignto"
+            containerStyle="w-72"
+            labelStyle="hidden"
+            defaultValue="assignTo"
+            // updateFormValue={updateSelectBoxValue}
+          />
+        </div>
+      </div>
       <InputText
         type="textarea"
         defaultValue={"Comments"}
