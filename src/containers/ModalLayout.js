@@ -17,21 +17,31 @@ function ModalLayout() {
 
   return (
     <>
-      {/* The button to open modal */}
+{/* The button to open modal */}
 
       {/* Put this part before </body> tag */}
-      <div className={`modal ${isOpen ? "modal-open" : ""}`}>
-        <div className={`modal-box  ${size === "lg" ? "sm:min-w-full" : ""}`}>
-          <button
-            className="btn btn-sm btn-circle absolute right-2 top-2"
+     {/* <button className="btn" onClick={()=>document.getElementById('my_modal_4').showModal()}>open modal</button>
+
+      <dialog id="my_modal_4" className="modal"> */}
+
+      
+      <div className={`modal  ${isOpen ? "modal-open" : ""}`}>
+         
+        
+          
+        <div className={`modal-box md:max-w-none md:pt-16 md:w-full sm:w-3/4 md:w-11/12 lg:w-1/2 md:grid md:grid-cols-2 md:gap-4 ${size === "lg" ? "md:w-full" : ""}`}>
+      
+        <button
+            className="btn btn-sm btn-circle absolute right-2 top-2 "
             onClick={() => close()}
           >
             ✕
           </button>
-          <h3 className="font-semibold text-2xl pb-6 text-center">{title}</h3>
-
-          {/* Loading modal body according to different modal type */}
-          {
+          <div className="md:flex md:justify md:absolute md:pl-96 md:pt-5 md:pb-10">
+          <h3 className="font-semibold text-2xl">{title}</h3> 
+         </div>
+         
+           {
             {
               [MODAL_BODY_TYPES.LEAD_ADD_NEW]: (
                 <AddLeadModalBody
@@ -48,10 +58,12 @@ function ModalLayout() {
               [MODAL_BODY_TYPES.DEFAULT]: <div></div>,
             }[bodyType]
           }
-        </div>
-      </div>
+          </div> 
+          </div>  
+     
     </>
   );
 }
 
 export default ModalLayout;
+ 

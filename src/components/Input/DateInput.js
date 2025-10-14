@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function InputText({
+function DateInput({
   labelTitle,
   labelStyle,
   type,
@@ -25,14 +25,14 @@ function InputText({
         </span>
       </label>
       <input
-        type={type || "text"}
+        type="date"
         value={value}
         placeholder={placeholder || ""}
         onChange={(e) => updateInputValue(e.target.value)}
-        className="input input-bordered md:max-w-xs"
+        className="input input-bordered"
       />
     </div>
   );
 }
 
-export default InputText;
+export default DateInput;

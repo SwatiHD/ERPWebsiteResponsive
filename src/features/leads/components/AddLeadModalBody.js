@@ -2,10 +2,13 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import InputText from "../../../components/Input/InputText";
 import SelectBox from "../../../components/Input/SelectBox";
+import DateInput from "../../../components/Input/DateInput";
+import FileInput from "../../../components/Input/FileInput";
 import ErrorText from "../../../components/Typography/ErrorText";
 import { showNotification } from "../../common/headerSlice";
 import { addNewLead } from "../leadSlice";
-
+import { useEffect } from "react";
+import axios from "axios";
 const INITIAL_LEAD_OBJ = {
   first_name: "",
   last_name: "",
@@ -50,7 +53,136 @@ function AddLeadModalBody({ closeModal }) {
     { name: "This Month", value: "THIS_MONTH" },
     { name: "Last Month", value: "LAST_MONTH" },
   ];
-
+  const moduleOptions = [
+    {
+      id: 1,
+      name: "General",
+      value: "generalMod",
+    },
+    {
+      id: 2,
+      name: "Sales",
+      value: "sales",
+    },
+    {
+      id: 3,
+      name: "Purchase",
+      value: "purchase",
+    },
+    {
+      id: 4,
+      name: "Inventory",
+      value: "inventory",
+    },
+    {
+      id: 5,
+      name: "Payable",
+      value: "payable",
+    },
+    {
+      id: 6,
+      name: "Recievable",
+      value: "Receivable",
+    },
+    {
+      id: 7,
+      name: "Quality",
+      value: "Quality",
+    },
+  ];
+  const priorityOptions= [
+    {
+      id: 1,
+      name: "High",
+      value: "high",
+    },
+    {
+      id: 2,
+      name: "Medium",
+      value: "medium",
+    },
+    {
+      id: 3,
+      name: "Low",
+      value: "low",
+    }
+  ];
+  const statusOptions=[
+    {
+      id: 1,
+      name: "Open",
+      value: "open",
+    },
+    {
+      id: 2,
+      name: "InProgress",
+      value: "inprogress",
+    },
+    {
+      id: 3,
+      name: "Close",
+      value: "close",
+    },
+    {
+      id: 4,
+      name: "Hold",
+      value: "hold",
+    },
+  ];
+  const assignToOptions=[
+    {
+      id: 1,
+      name: "Employee 1",
+      value: "employee1",
+    },{
+      id: 7,
+      name: "Employee 2",
+      value: "emplloyee2",
+    },{
+      id: 7,
+      name: "Employee 3",
+      value: "employee3",
+    },
+  ]
+  const activityOptions=[
+    {
+      id: 1,
+      name: "General",
+      value: "generalAct",
+    },{
+      id: 2,
+      name: "New Sales Order",
+      value: "newSalesOrder",
+    },{
+      id: 3,
+      name: "New Sales Quotation",
+      value: "newSalesQuotation",
+    },
+    {
+      id: 4,
+      name: "New Sales Invoice",
+      value: "newSalesInvoice",
+    },
+    {
+      id: 5,
+      name: "Packing List",
+      value: "packingList",
+    },
+    {
+      id: 6,
+      name: "Performa Invoice",
+      value: "performaInvoice",
+    },
+    {
+      id: 7,
+      name: "New Delivery Challan",
+      value: "newDeliveryChallan",
+    },{
+      id: 8,
+      name: "Pick List",
+      value: "pickList",
+    },
+  ]
   return (
     <>
       {/* <InputText
@@ -76,7 +208,7 @@ function AddLeadModalBody({ closeModal }) {
         updateType="first_name"
         containerStyle="mt-3"
         labelTitle="Project ID"
-        // updateFormValue={updateFormValue}
+       updateFormValue={updateFormValue}
       />
       <InputText
         type="text"
@@ -84,19 +216,19 @@ function AddLeadModalBody({ closeModal }) {
         updateType="first_name"
         containerStyle="mt-3"
         labelTitle="Task Number"
-        // updateFormValue={updateFormValue}
+        updateFormValue={updateFormValue}
       />
       <div className="pt-5 flex-1">
         <div className="pl-2">Module</div>
-        <div className="flex-1 pt-1 sm:w-3/100 md:w-48">
+        <div className="flex-1 pt-1 sm:w-full md:w-full">
           <SelectBox
-            options={periodOptions}
+            options={moduleOptions}
             labelTitle="Module"
-            placeholder="Select priority"
+            placeholder={loading ? "Loading..." : "Select module"}
             containerStyle="w-72"
             labelStyle="hidden"
             defaultValue="module"
-            //  updateFormValue={updateSelectBoxValue}
+            updateFormValue={updateFormValue}
           />
         </div>
       </div>
@@ -105,17 +237,17 @@ function AddLeadModalBody({ closeModal }) {
 
         <div className="flex-1 pt-1">
           <SelectBox
-            options={periodOptions}
+            options={priorityOptions}
             labelTitle="Priority"
             placeholder="Select priority"
             containerStyle="w-72"
             labelStyle="hidden"
             defaultValue="priority"
-            //  updateFormValue={updateSelectBoxValue}
+             updateFormValue={updateFormValue}
           />
         </div>
       </div>
-      <div className="pt-5 flex-1">
+      {/* <div className="pt-5 flex-1">
         <div className="pl-2">Parent Task ID</div>
 
         <div className="flex-1 pt-1">
@@ -129,14 +261,14 @@ function AddLeadModalBody({ closeModal }) {
             // updateFormValue={updateSelectBoxValue}
           />
         </div>
-      </div>
+      </div> */}
       <InputText
         type="text"
         defaultValue={"Status"}
         updateType="first_name"
         containerStyle="mt-3"
         labelTitle="Status"
-        // updateFormValue={updateFormValue}
+        updateFormValue={updateFormValue}
       />
       <InputText
         type="text"
@@ -150,8 +282,8 @@ function AddLeadModalBody({ closeModal }) {
         <div className="pl-2">Task Date</div>
 
         <div className="flex-1 pt-1">
-          <SelectBox
-            options={periodOptions}
+          <DateInput
+            // options={periodOptions}
             labelTitle="Task Date"
             placeholder="Select Task Date"
             containerStyle="w-72"
@@ -161,18 +293,30 @@ function AddLeadModalBody({ closeModal }) {
           />
         </div>
       </div>
+
       <div className="pt-5 flex-1">
         <div className="pl-2">End Date</div>
 
         <div className="flex-1 pt-1">
-          <SelectBox
-            options={periodOptions}
+          <DateInput
+            // options={periodOptions}
             labelTitle="End Date"
             placeholder="Select End Date"
             containerStyle="w-72"
             labelStyle="hidden"
             defaultValue="endDate"
-            // updateFormValue={updateSelectBoxValue}
+            updateFormValue={updateFormValue}
+          />
+        </div>
+      </div>
+      <div className="pt-5 flex-1">
+        <div className="pl-2">Attach Files</div>
+        <div className="flex-1 pt-1">
+          <FileInput
+            placeholder="Choose a file"
+            containerStyle="w-72"
+            labelStyle="hidden"
+            defaultValue="fileinput"
           />
         </div>
       </div>
@@ -181,13 +325,13 @@ function AddLeadModalBody({ closeModal }) {
 
         <div className="flex-1 pt-1">
           <SelectBox
-            options={periodOptions}
+            options={activityOptions}
             labelTitle="Activity"
             placeholder="Select activity"
             containerStyle="w-72"
             labelStyle="hidden"
             defaultValue="activity"
-            // updateFormValue={updateSelectBoxValue}
+            updateFormValue={updateFormValue}
           />
         </div>
       </div>
@@ -195,13 +339,13 @@ function AddLeadModalBody({ closeModal }) {
         <div className="pl-2">Assign To</div>
         <div className="flex-1 pt-1">
           <SelectBox
-            options={periodOptions}
+            options={assignToOptions}
             labelTitle="Assign To"
             placeholder="select assignto"
             containerStyle="w-72"
             labelStyle="hidden"
             defaultValue="assignTo"
-            // updateFormValue={updateSelectBoxValue}
+            updateFormValue={updateFormValue}
           />
         </div>
       </div>
@@ -211,14 +355,14 @@ function AddLeadModalBody({ closeModal }) {
         updateType="first_name"
         containerStyle="mt-3"
         labelTitle="Comments"
-        // updateFormValue={updateFormValue}
+       updateFormValue={updateFormValue}
       />
       <ErrorText styleClass="mt-16">{errorMessage}</ErrorText>
-      <div className="modal-action">
+      <div className="modal-action md:flex md:justify-end">
         <button className="btn btn-ghost" onClick={() => closeModal()}>
           Cancel
         </button>
-        <button className="btn btn-primary px-6" onClick={() => saveNewLead()}>
+        <button className="btn btn-primary px-6 md:ml-4" onClick={() => saveNewLead()}>
           Save
         </button>
       </div>

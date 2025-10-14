@@ -1,0 +1,41 @@
+[
+  {
+    "moduleList": [
+      {
+        "id": 1,
+        "name": "general",
+        "value": "GENERAL"
+      },
+      {
+        "id": 2,
+        "name": "sales",
+        "value": "SALES"
+      },
+      {
+        "id": 3,
+        "name": "purchase",
+        "value": "PURCHASE"
+      },
+      {
+        "id": 4,
+        "name": "inventory",
+        "value": "INVENTORY"
+      },
+      {
+        "id": 5,
+        "name": "payable",
+        "value": "PAYABLE"
+      },
+      {
+        "id": 6,
+        "name": "recievable",
+        "value": "RECEIVABLE"
+      },
+      {
+        "id": 7,
+        "name": "quality",
+        "value": "QUALITY"
+      }
+    ]
+  }
+]

@@ -19,12 +19,13 @@ const TopSideButtons = () => {
       openModal({
         title: "Add New Task",
         bodyType: MODAL_BODY_TYPES.LEAD_ADD_NEW,
+        size : "w-11/12 max-w-5xl"
       })
     );
   };
 
   return (
-    <div className="inline-block float-right">
+    <div className=" float-right">
       <button
         className="btn px-6 btn-sm normal-case btn-primary"
         onClick={() => openAddNewLeadModal()}

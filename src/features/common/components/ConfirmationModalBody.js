@@ -26,7 +26,7 @@ function ConfirmationModalBody({ extraObject, closeModal }) {
       <p className=" text-xl mt-8 text-center">{message}</p>
 
       <div className="modal-action mt-12">
-        <button className="btn btn-outline   " onClick={() => closeModal()}>
+        <button className="btn btn-outline" onClick={() => closeModal()}>
           CANCellllll
         </button>
 
