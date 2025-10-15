@@ -18,7 +18,7 @@ function FileInput({
   //   };
 
   return (
-    <div className={`form-control ${containerStyle}`}>
+    <div className={`form-control w-full ${containerStyle}`}>
       {/* //   <label className="label">
     //     <span className={"label-text text-base-content " + labelStyle}>
     //       {labelTitle}
@@ -29,7 +29,7 @@ function FileInput({
         // value={value}
         placeholder={placeholder || ""}
         // onChange={(e) => updateInputValue(e.target.value)}
-        className="file-input input-bordered leading-10 pl-0"
+        className="file-input input-bordered leading-10 pl-0 w-80"
       />
     </div>
   );

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect} from "react";
 import { MODAL_BODY_TYPES } from "../utils/globalConstantUtil";
 import { useSelector, useDispatch } from "react-redux";
 import { closeModal } from "../features/common/modalSlice";
@@ -10,6 +10,8 @@ function ModalLayout() {
     (state) => state.modal
   );
   const dispatch = useDispatch();
+ 
+
 
   const close = (e) => {
     dispatch(closeModal(e));
@@ -24,7 +26,7 @@ function ModalLayout() {
 
       <dialog id="my_modal_4" className="modal"> */}
 
-      
+
       <div className={`modal  ${isOpen ? "modal-open" : ""}`}>
          
         
@@ -60,9 +62,8 @@ function ModalLayout() {
           }
           </div> 
           </div>  
-     
     </>
-  );
+  )
 }
 
 export default ModalLayout;
