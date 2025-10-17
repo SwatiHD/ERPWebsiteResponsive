@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from 'react';
 import '../../../src/VoiceRecorder.css';
 const VoiceInput = () => {
@@ -36,7 +37,7 @@ const VoiceInput = () => {
     if (mediaRecorderRef.current && isRecording) {
       mediaRecorderRef.current.stop();
       setIsRecording(false);
-      
+     
       // Stop all tracks on the stream to release the microphone
       mediaRecorderRef.current.stream.getTracks().forEach(track => track.stop());
     }

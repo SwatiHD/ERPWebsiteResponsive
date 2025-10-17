@@ -321,7 +321,7 @@ function AddLeadModalBody({ closeModal }) {
           />
         </div>
         <div className="pt-12 size-5xl">
-          {/* <VoiceInput/> */}
+          <VoiceInput/>
         </div>
 
       </div>
