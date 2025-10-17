@@ -24,7 +24,7 @@ function SelectBox(props) {
   };
 
   return (
-    <div className={`inline-block w-full ${containerStyle}`}>
+    <div className={`form-control ${containerStyle}`}>
       <label className={`label  ${labelStyle}`}>
         <div className="label-text">
           {labelTitle}
@@ -37,7 +37,7 @@ function SelectBox(props) {
       </label>
 
       <select
-        className="select select-bordered w-80"
+        className="select select-bordered"
         value={value}
         onChange={(e) => updateValue(e.target.value)}
       >

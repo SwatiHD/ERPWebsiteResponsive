@@ -4,11 +4,13 @@ import InputText from "../../../components/Input/InputText";
 import SelectBox from "../../../components/Input/SelectBox";
 import DateInput from "../../../components/Input/DateInput";
 import FileInput from "../../../components/Input/FileInput";
+import TextAreaInput from "../../../components/Input/TextAreaInput"
 import ErrorText from "../../../components/Typography/ErrorText";
 import { showNotification } from "../../common/headerSlice";
 import { addNewLead } from "../leadSlice";
 import { useEffect } from "react";
 import axios from "axios";
+import VoiceInput from "../../../components/Input/VoiceInput";
 const INITIAL_LEAD_OBJ = {
   first_name: "",
   last_name: "",
@@ -90,7 +92,7 @@ function AddLeadModalBody({ closeModal }) {
       value: "Quality",
     },
   ];
-  const priorityOptions= [
+  const priorityOptions = [
     {
       id: 1,
       name: "High",
@@ -107,7 +109,7 @@ function AddLeadModalBody({ closeModal }) {
       value: "low",
     }
   ];
-  const statusOptions=[
+  const statusOptions = [
     {
       id: 1,
       name: "Open",
@@ -129,31 +131,54 @@ function AddLeadModalBody({ closeModal }) {
       value: "hold",
     },
   ];
-  const assignToOptions=[
+
+  const tasknoOptions = [
+    {
+      id: 1,
+      name: "T123",
+      value: "t123",
+    },
+    {
+      id: 2,
+      name: "T678",
+      value: "t678",
+    },
+    {
+      id: 3,
+      name: "T999",
+      value: "t999",
+    },
+    {
+      id: 4,
+      name: "T000",
+      value: "t000",
+    },
+  ];
+  const assignToOptions = [
     {
       id: 1,
       name: "Employee 1",
       value: "employee1",
-    },{
+    }, {
       id: 7,
       name: "Employee 2",
       value: "emplloyee2",
-    },{
+    }, {
       id: 7,
       name: "Employee 3",
       value: "employee3",
     },
   ]
-  const activityOptions=[
+  const activityOptions = [
     {
       id: 1,
       name: "General",
       value: "generalAct",
-    },{
+    }, {
       id: 2,
       name: "New Sales Order",
       value: "newSalesOrder",
-    },{
+    }, {
       id: 3,
       name: "New Sales Quotation",
       value: "newSalesQuotation",
@@ -177,186 +202,139 @@ function AddLeadModalBody({ closeModal }) {
       id: 7,
       name: "New Delivery Challan",
       value: "newDeliveryChallan",
-    },{
+    }, {
       id: 8,
       name: "Pick List",
       value: "pickList",
     },
   ]
+
   return (
     <>
-      {/* <InputText
-        type="text"
-        defaultValue={leadObj.first_name}
-        updateType="first_name"
-        containerStyle="mt-4"
-        labelTitle="Name"
-        updateFormValue={updateFormValue}
-      />
+     <div className="grid md:grid-cols-2 gap-6">
+        <div className="flex flex-col">
+          <SelectBox
+            options={tasknoOptions}
+            defaultValue={"Task Number"}
+            updateType="first_name"
+            containerStyle="mt-3"
+            labelTitle="Task Number"
+            updateFormValue={updateFormValue}
+          />
+        </div>
+        <div className="flex flex-col">
+          <InputText
+            type="text"
+            defaultValue={"Project ID"}
+            updateType="first_name"
+            containerStyle="mt-3"
+            labelTitle="Project ID"
+            updateFormValue={updateFormValue}
+          />
+        </div>
+      </div>
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="flex flex-col">
+          <DateInput
+            labelTitle="Task Date"
+            placeholder="Select Task Date"
+            containerStyle="mt-3"
+            defaultValue="taskDate"
+          />
+        </div>
+        <div className="flex flex-col">
+          <DateInput
+            labelTitle="End Date"
+            placeholder="Select End Date"
+            containerStyle="mt-3"
+            defaultValue="endDate"
+          />
+        </div>
+      </div>
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="flex flex-col">
 
-      <InputText
-        type="text"
-        defaultValue={leadObj.last_name}
-        updateType="last_name"
-        containerStyle="mt-4"
-        labelTitle="Last Name"
-        updateFormValue={updateFormValue}
-      /> */}
-      <InputText
-        type="text"
-        defaultValue={"Project ID"}
-        updateType="first_name"
-        containerStyle="mt-3"
-        labelTitle="Project ID"
-       updateFormValue={updateFormValue}
-      />
-      <InputText
-        type="text"
-        defaultValue={"Task Number"}
-        updateType="first_name"
-        containerStyle="mt-3"
-        labelTitle="Task Number"
-        updateFormValue={updateFormValue}
-      />
-      <div className="pt-5 flex-1">
-        <div className="pl-2">Module</div>
-        <div className="flex-1 pt-1 sm:w-full md:w-full">
           <SelectBox
             options={moduleOptions}
             labelTitle="Module"
             placeholder={loading ? "Loading..." : "Select module"}
-            containerStyle="w-72"
-            labelStyle="hidden"
+            containerStyle="mt-3"
             defaultValue="module"
             updateFormValue={updateFormValue}
           />
         </div>
-      </div>
-      <div className="pt-5 flex-1">
-        <div className="pl-2">Priority</div>
-
-        <div className="flex-1 pt-1">
-          <SelectBox
-            options={priorityOptions}
-            labelTitle="Priority"
-            placeholder="Select priority"
-            containerStyle="w-72"
-            labelStyle="hidden"
-            defaultValue="priority"
-             updateFormValue={updateFormValue}
-          />
-        </div>
-      </div>
-      {/* <div className="pt-5 flex-1">
-        <div className="pl-2">Parent Task ID</div>
-
-        <div className="flex-1 pt-1">
-          <SelectBox
-            options={periodOptions}
-            labelTitle="Parent Task ID"
-            placeholder="Select priority"
-            containerStyle="w-72"
-            labelStyle="hidden"
-            defaultValue="parent task id"
-            // updateFormValue={updateSelectBoxValue}
-          />
-        </div>
-      </div> */}
-      <InputText
-        type="text"
-        defaultValue={"Status"}
-        updateType="first_name"
-        containerStyle="mt-3"
-        labelTitle="Status"
-        updateFormValue={updateFormValue}
-      />
-      <InputText
-        type="text"
-        defaultValue={"Customer ID"}
-        updateType="first_name"
-        containerStyle="mt-3"
-        labelTitle="Customer ID"
-        // updateFormValue={updateFormValue}
-      />
-      <div className="pt-5 flex-1">
-        <div className="pl-2">Task Date</div>
-
-        <div className="flex-1 pt-1">
-          <DateInput
-            // options={periodOptions}
-            labelTitle="Task Date"
-            placeholder="Select Task Date"
-            containerStyle="w-72"
-            labelStyle="hidden"
-            defaultValue="taskDate"
-            // updateFormValue={updateSelectBoxValue}
-          />
-        </div>
-      </div>
-
-      <div className="pt-5 flex-1">
-        <div className="pl-2">End Date</div>
-
-        <div className="flex-1 pt-1">
-          <DateInput
-            // options={periodOptions}
-            labelTitle="End Date"
-            placeholder="Select End Date"
-            containerStyle="w-72"
-            labelStyle="hidden"
-            defaultValue="endDate"
-            updateFormValue={updateFormValue}
-          />
-        </div>
-      </div>
-      <div className="pt-5 flex-1">
-        <div className="pl-2">Attach Files</div>
-        <div className="flex-1 pt-1">
-          <FileInput
-            placeholder="Choose a file"
-            containerStyle="w-72"
-            labelStyle="hidden"
-            defaultValue="fileinput"
-          />
-        </div>
-      </div>
-      <div className="pt-5 flex-1">
-        <div className="pl-2">Activity</div>
-
-        <div className="flex-1 pt-1">
+        <div className="flex flex-col">
           <SelectBox
             options={activityOptions}
             labelTitle="Activity"
             placeholder="Select activity"
-            containerStyle="w-72"
-            labelStyle="hidden"
+            containerStyle="mt-3"
             defaultValue="activity"
             updateFormValue={updateFormValue}
           />
         </div>
       </div>
-      <div className="pt-5 flex-1">
-        <div className="pl-2">Assign To</div>
-        <div className="flex-1 pt-1">
+
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="flex flex-col">
+
           <SelectBox
             options={assignToOptions}
             labelTitle="Assign To"
             placeholder="select assignto"
-            containerStyle="w-72"
-            labelStyle="hidden"
+            containerStyle="mt-3"
             defaultValue="assignTo"
             updateFormValue={updateFormValue}
           />
         </div>
+        <div className="flex flex-col">
+          <SelectBox
+            options={priorityOptions}
+            labelTitle="Priority"
+            placeholder="Select priority"
+            containerStyle="mt-3"
+            defaultValue="Priority"
+            updateFormValue={updateFormValue}
+          />
+
+        </div>
       </div>
-      <InputText
-        type="textarea"
-        defaultValue={"Comments"}
-        updateType="first_name"
-        containerStyle="mt-3"
-        labelTitle="Comments"
-       updateFormValue={updateFormValue}
-      />
+
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="flex flex-col">
+
+          <SelectBox
+            options={statusOptions}
+            defaultValue={"Open"}
+            updateType="first_name"
+            containerStyle="mt-3"
+            labelTitle="Status"
+            updateFormValue={updateFormValue}
+          />
+        </div>
+        <div className="flex flex-row">
+          <FileInput
+            labelTitle="Attach File"
+            placeholder="Choose a file"
+            containerStyle="mt-3"
+            defaultValue="fileinput"
+          />
+        </div>
+        <div className="pt-12 size-5xl">
+          {/* <VoiceInput/> */}
+        </div>
+
+      </div>
+      <div className="h-24">
+        <TextAreaInput
+          type="textarea"
+          defaultValue={"Comments"}
+          updateType="first_name"
+          containerStyle="mt-3"
+          labelTitle="Comments"
+          updateFormValue={updateFormValue}
+        />
+      </div>
       <ErrorText styleClass="mt-16">{errorMessage}</ErrorText>
       <div className="modal-action md:flex md:justify-end">
         <button className="btn btn-ghost" onClick={() => closeModal()}>
@@ -369,5 +347,6 @@ function AddLeadModalBody({ closeModal }) {
     </>
   );
 }
+
 
 export default AddLeadModalBody;

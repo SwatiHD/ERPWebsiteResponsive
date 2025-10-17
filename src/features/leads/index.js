@@ -25,7 +25,7 @@ const TopSideButtons = () => {
   };
 
   return (
-    <div className=" float-right">
+    <div className="justify-center">
       <button
         className="btn px-6 btn-sm normal-case btn-primary"
         onClick={() => openAddNewLeadModal()}

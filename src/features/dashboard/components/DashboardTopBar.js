@@ -49,8 +49,8 @@ function DashboardTopBar({ updateDashboardPeriod }) {
             placeholder="Select date range"
             containerStyle="w-72"
             labelStyle="hidden"
-            defaultValue="TODAY"
-            //  updateFormValue={updateSelectBoxValue}
+            defaultValue= "TODAY"
+          //  updateFormValue={updateSelectBoxValue}
           />
         }
       </div>

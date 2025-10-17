@@ -1,4 +1,4 @@
-import { useEffect} from "react";
+import { useEffect, useRef} from "react";
 import { MODAL_BODY_TYPES } from "../utils/globalConstantUtil";
 import { useSelector, useDispatch } from "react-redux";
 import { closeModal } from "../features/common/modalSlice";
@@ -10,36 +10,27 @@ function ModalLayout() {
     (state) => state.modal
   );
   const dispatch = useDispatch();
- 
+  const modalRef = useRef(null);
+  const modalContentRef = useRef(null);
 
 
   const close = (e) => {
     dispatch(closeModal(e));
   };
 
+
   return (
     <>
-{/* The button to open modal */}
-
-      {/* Put this part before </body> tag */}
-     {/* <button className="btn" onClick={()=>document.getElementById('my_modal_4').showModal()}>open modal</button>
-
-      <dialog id="my_modal_4" className="modal"> */}
-
-
       <div className={`modal  ${isOpen ? "modal-open" : ""}`}>
-         
-        
-          
-        <div className={`modal-box md:max-w-none md:pt-16 md:w-full sm:w-3/4 md:w-11/12 lg:w-1/2 md:grid md:grid-cols-2 md:gap-4 ${size === "lg" ? "md:w-full" : ""}`}>
+         <div className={`modal-box md:m-12 md:pt-16 sm:w-3/4 md:max-w-full  ${size === "lg" ? "md:w-full" : ""}`}>
       
         <button
-            className="btn btn-sm btn-circle absolute right-2 top-2 "
+            className="btn btn-sm btn-circle absolute right-2 top-2"
             onClick={() => close()}
           >
             ✕
           </button>
-          <div className="md:flex md:justify md:absolute md:pl-96 md:pt-5 md:pb-10">
+          <div className="md:pl-10">
           <h3 className="font-semibold text-2xl">{title}</h3> 
          </div>
          

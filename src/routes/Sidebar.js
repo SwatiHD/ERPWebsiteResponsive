@@ -47,38 +47,38 @@ const Sidebar = async () => {
       //     icon: <i className="fa-solid fa-landmark"></i>,
       //     name: "Project Management",
       //   },
-      {
-        path: "",
-        icon: <DocumentDuplicateIcon className={`${iconClasses} inline`} />,
-        name: "Pages",
-        submenu: [
-          {
-            path: "/login",
-            icon: <ArrowRightOnRectangleIcon className={submenuIconClasses} />,
-            name: "Login",
-          },
-          {
-            path: "/register",
-            icon: <UserIcon className={submenuIconClasses} />,
-            name: "Register",
-          },
-          {
-            path: "/forgot-password",
-            icon: <KeyIcon className={submenuIconClasses} />,
-            name: "Forgot Password",
-          },
-          {
-            path: "/app/blank",
-            icon: <DocumentIcon className={submenuIconClasses} />,
-            name: "Blank Page",
-          },
-          {
-            path: "/app/404",
-            icon: <ExclamationTriangleIcon className={submenuIconClasses} />,
-            name: "404",
-          },
-        ],
-      },
+      // {
+      //   path: "",
+      //   icon: <DocumentDuplicateIcon className={`${iconClasses} inline`} />,
+      //   name: "Pages",
+      //   submenu: [
+      //     {
+      //       path: "/login",
+      //       icon: <ArrowRightOnRectangleIcon className={submenuIconClasses} />,
+      //       name: "Login",
+      //     },
+      //     {
+      //       path: "/register",
+      //       icon: <UserIcon className={submenuIconClasses} />,
+      //       name: "Register",
+      //     },
+      //     {
+      //       path: "/forgot-password",
+      //       icon: <KeyIcon className={submenuIconClasses} />,
+      //       name: "Forgot Password",
+      //     },
+      //     {
+      //       path: "/app/blank",
+      //       icon: <DocumentIcon className={submenuIconClasses} />,
+      //       name: "Blank Page",
+      //     },
+      //     {
+      //       path: "/app/404",
+      //       icon: <ExclamationTriangleIcon className={submenuIconClasses} />,
+      //       name: "404",
+      //     },
+      //   ],
+      // },
       // {
       //   path: "",
       //   icon: <Cog6ToothIcon className={`${iconClasses} inline`} />,

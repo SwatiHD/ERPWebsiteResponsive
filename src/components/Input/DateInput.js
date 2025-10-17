@@ -18,7 +18,7 @@ function DateInput({
   };
 
   return (
-    <div className={`form-control w-full ${containerStyle}`}>
+    <div className={`form-control ${containerStyle}`}>
       <label className="label">
         <span className={"label-text text-base-content " + labelStyle}>
           {labelTitle}
@@ -27,9 +27,9 @@ function DateInput({
       <input
         type="date"
         value={value}
-        placeholder={placeholder || ""}
+        placeholder={placeholder || "YYYY-MM-DD"}
         onChange={(e) => updateInputValue(e.target.value)}
-        className="input input-bordered w-80"
+        className="input input-bordered"
       />
     </div>
   );

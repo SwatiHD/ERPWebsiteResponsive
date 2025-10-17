@@ -18,9 +18,9 @@ function InputText({
   };
 
   return (
-    <div className={`form-control md:w-full ${containerStyle}`}>
+    <div className={`form-control ${containerStyle}`}>
       <label className="label">
-        <span className={"label-text text-base " + labelStyle}>
+        <span className={"label-text text-base-content " + labelStyle}>
           {labelTitle}
         </span>
       </label>
@@ -29,7 +29,7 @@ function InputText({
         value={value}
         placeholder={placeholder || ""}
         onChange={(e) => updateInputValue(e.target.value)}
-        className="input input-bordered md:w-80 sm:w-64"
+        className="input input-bordered"
       />
     </div>
   );
