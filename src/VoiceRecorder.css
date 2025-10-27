@@ -2,9 +2,9 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px;
-  background-color: #f1f1f1;
-  border-radius: 20px;
+  padding: 5px;
+  /* background-color: #f1f1f1; */
+  margin-top: -3px;
 }
 
 .mic-button {
@@ -12,7 +12,7 @@
   height: 40px;
   border-radius: 50%;
   border: none;
-  background-color: #008080;
+  background-color: oklch(0.7206 0.191 231.6 / 1);
   color: white;
   display: flex;
   align-items: center;
@@ -45,7 +45,7 @@
 .audio-player-container {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
 }
 
 audio {

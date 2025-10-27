@@ -29,10 +29,11 @@ function FileInput({
         // value={value}
         placeholder={placeholder || ""}
         // onChange={(e) => updateInputValue(e.target.value)}
-        className="file-input input-bordered"
+        className="file-input file-input-info input-bordered"
       />
     </div>
   );
+
 }
 
 export default FileInput;

@@ -11,10 +11,12 @@ import { addNewLead } from "../leadSlice";
 import { useEffect } from "react";
 import axios from "axios";
 import VoiceInput from "../../../components/Input/VoiceInput";
+import GreyInput from "../../../components/Input/GreyInput";
 const INITIAL_LEAD_OBJ = {
-  first_name: "",
-  last_name: "",
-  email: "",
+ taskId: "",
+        taskName: "",
+        startDate: "",
+        endDate: "",
 };
 
 function AddLeadModalBody({ closeModal }) {
@@ -24,22 +26,22 @@ function AddLeadModalBody({ closeModal }) {
   const [leadObj, setLeadObj] = useState(INITIAL_LEAD_OBJ);
 
   const saveNewLead = () => {
-    if (leadObj.first_name.trim() === "")
-      return setErrorMessage("First Name is required!");
-    else if (leadObj.email.trim() === "")
-      return setErrorMessage("Email id is required!");
-    else {
+    // if (leadObj.first_name.trim() === "")
+    //   return setErrorMessage("First Name is required!");
+    // else if (leadObj.email.trim() === "")
+    //   return setErrorMessage("Email id is required!");
+    // else {
       let newLeadObj = {
-        id: 7,
-        email: leadObj.email,
-        first_name: leadObj.first_name,
-        last_name: leadObj.last_name,
-        avatar: "https://reqres.in/img/faces/1-image.jpg",
+        taskId: leadObj.taskId,
+        taskName: leadObj.taskName,
+        startDate: leadObj.startDate,
+        endDate: leadObj.endDate,
+       
       };
       dispatch(addNewLead({ newLeadObj }));
       dispatch(showNotification({ message: "New Lead Added!", status: 1 }));
       closeModal();
-    }
+    // }
   };
 
   const updateFormValue = ({ updateType, value }) => {
@@ -47,14 +49,6 @@ function AddLeadModalBody({ closeModal }) {
     setLeadObj({ ...leadObj, [updateType]: value });
   };
 
-  const periodOptions = [
-    { name: "Today", value: "TODAY" },
-    { name: "Yesterday", value: "YESTERDAY" },
-    { name: "This Week", value: "THIS_WEEK" },
-    { name: "Last Week", value: "LAST_WEEK" },
-    { name: "This Month", value: "THIS_MONTH" },
-    { name: "Last Month", value: "LAST_MONTH" },
-  ];
   const moduleOptions = [
     {
       id: 1,
@@ -211,18 +205,18 @@ function AddLeadModalBody({ closeModal }) {
 
   return (
     <>
-     <div className="grid md:grid-cols-2 gap-6">
+     <div className="grid md:grid-cols-2 gap-4">
         <div className="flex flex-col">
-          <SelectBox
+          <GreyInput
             options={tasknoOptions}
             defaultValue={"Task Number"}
-            updateType="first_name"
+            //updateType="first_name"
             containerStyle="mt-3"
             labelTitle="Task Number"
             updateFormValue={updateFormValue}
           />
         </div>
-        <div className="flex flex-col">
+        {/* <div className="flex flex-col">
           <InputText
             type="text"
             defaultValue={"Project ID"}
@@ -231,9 +225,9 @@ function AddLeadModalBody({ closeModal }) {
             labelTitle="Project ID"
             updateFormValue={updateFormValue}
           />
-        </div>
+        </div> */}
       </div>
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-6 sm:-pt-10">
         <div className="flex flex-col">
           <DateInput
             labelTitle="Task Date"
@@ -251,7 +245,7 @@ function AddLeadModalBody({ closeModal }) {
           />
         </div>
       </div>
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-4">
         <div className="flex flex-col">
 
           <SelectBox
@@ -306,7 +300,7 @@ function AddLeadModalBody({ closeModal }) {
           <SelectBox
             options={statusOptions}
             defaultValue={"Open"}
-            updateType="first_name"
+            // updateType="first_name"
             containerStyle="mt-3"
             labelTitle="Status"
             updateFormValue={updateFormValue}
@@ -319,17 +313,18 @@ function AddLeadModalBody({ closeModal }) {
             containerStyle="mt-3"
             defaultValue="fileinput"
           />
-        </div>
-        <div className="pt-12 size-5xl">
+           <div className="pt-12 size-2xl">
           <VoiceInput/>
         </div>
+        </div>
+       
 
       </div>
       <div className="h-24">
         <TextAreaInput
           type="textarea"
           defaultValue={"Comments"}
-          updateType="first_name"
+          // updateType="first_name"
           containerStyle="mt-3"
           labelTitle="Comments"
           updateFormValue={updateFormValue}

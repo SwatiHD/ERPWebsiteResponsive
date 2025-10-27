@@ -1,0 +1,28 @@
+{
+	"iTotalRecords":32,
+	"aaData":
+	[
+	{"assignedBy":"EMP 2","comments":"commments","taskDate":"2023-05-05","endDate":"2023-05-05","taskName":"numbering","priority":"Urgent","taskId":"TASK10","startDate":"2023-05-05","assignedTo":"EMP 2","status":"Close"},
+	 {"assignedBy":"EMP 2","comments":"SA","taskDate":"2023-09-06","endDate":"2023-09-06","taskName":"jjjjj","priority":"High","taskId":"TASK102","startDate":"2023-09-06","assignedTo":"EMP 2","status":"Open"},
+	 {"assignedBy":"EMP 2","comments":"","taskDate":"2023-09-07","endDate":"2023-09-07","taskName":"klmlklkkl","priority":"High","taskId":"TASK152","startDate":"2023-09-07","assignedTo":"","status":"Open"},
+	 {"assignedBy":"EMP 2","comments":"","taskDate":"2023-09-07","endDate":"2023-09-07","taskName":"","priority":"High","taskId":"TASK153","startDate":"2023-09-07","assignedTo":"","status":"Open"},
+	 {"assignedBy":"EMP 2","comments":"aaaaaaaaaaaaaa","taskDate":"2023-09-07","endDate":"2023-09-07","taskName":"","priority":"High","taskId":"TASK154","startDate":"2023-09-07","assignedTo":"","status":"Open"},
+	 {"assignedBy":"EMP 2","comments":"aaaaaaaaaaaaaa","taskDate":"2023-09-08","endDate":"2023-09-08","taskName":"","priority":"High","taskId":"TASK155","startDate":"2023-09-08","assignedTo":"","status":"Open"},
+	 {"assignedBy":"EMP 2","comments":"aaaaaaaaaaaaaa","taskDate":"2023-09-08","endDate":"2023-09-08","taskName":"","priority":"High","taskId":"TASK156","startDate":"2023-09-08","assignedTo":"","status":"Open"},
+	 {"assignedBy":"EMP 2","comments":"aaaaaaaaaaaaaa","taskDate":"2023-09-08","endDate":"2023-09-08","taskName":"","priority":"High","taskId":"TASK157","startDate":"2023-09-08","assignedTo":"","status":"Open"},
+	 {"assignedBy":"EMP 2","comments":"aaaaaaaaaaaaaa","taskDate":"2023-09-08","endDate":"2023-09-08","taskName":"","priority":"High","taskId":"TASK158","startDate":"2023-09-08","assignedTo":"","status":"Open"},
+	 {"assignedBy":"EMP 2","comments":"","taskDate":"2023-09-19","endDate":"2023-09-19","taskName":"","priority":"High","taskId":"TASK159","startDate":"2023-09-09","assignedTo":"","status":"Open"},
+	 {"assignedBy":"EMP 2","comments":"sadcafvfs","taskDate":"2023-09-28","endDate":"2023-09-28","taskName":"","priority":"High","taskId":"TASK160","startDate":"2023-09-09","assignedTo":"","status":"Open"},
+	 {"assignedBy":"EMP 2","comments":"szfc","taskDate":"2023-09-11","endDate":"2023-09-11","taskName":"","priority":"High","taskId":"TASK167","startDate":"2023-09-11","assignedTo":"EMP 2","status":"Open"},
+	 {"assignedBy":"EMP 2","comments":"","taskDate":"2023-09-11","endDate":"2023-09-11","taskName":"","priority":"High","taskId":"TASK168","startDate":"2023-09-11","assignedTo":"EMP 2","status":"Open"},
+	 {"assignedBy":"EMP 2","comments":"aZ","taskDate":"2023-09-11","endDate":"2023-09-11","taskName":"","priority":"High","taskId":"TASK169","startDate":"2023-09-11","assignedTo":"EMP 2","status":"Open"},
+	 {"assignedBy":"EMP 2","comments":"sad","taskDate":"2023-09-11","endDate":"2023-09-11","taskName":"","priority":"High","taskId":"TASK170","startDate":"2023-09-11","assignedTo":"EMP 2","status":"Open"},
+	 {"assignedBy":"EMP 2","comments":"","taskDate":"2023-10-16","endDate":"2023-10-16","taskName":"","priority":"High","taskId":"TASK176","startDate":"2023-10-16","assignedTo":"EMP 2","status":"Open"},
+	 {"assignedBy":"EMP 2","comments":"","taskDate":"2023-10-16","endDate":"2023-10-16","taskName":"","priority":"High","taskId":"TASK178","startDate":"2023-10-16","assignedTo":"EMP 2","status":"Open"},
+	 {"assignedBy":"EMP 2","comments":"","taskDate":"2023-10-16","endDate":"2023-10-16","taskName":"","priority":"High","taskId":"TASK180","startDate":"2023-10-16","assignedTo":"EMP 2","status":"Open"},
+	 {"assignedBy":"EMP 2","comments":"","taskDate":"2023-10-16","endDate":"2023-10-16","taskName":"","priority":"High","taskId":"TASK181","startDate":"2023-10-16","assignedTo":"EMP 2","status":"Open"},
+	 {"assignedBy":"EMP 2","comments":"do grn","taskDate":"2023-11-02","endDate":"2023-11-02","taskName":"","priority":"High","taskId":"TASK182","startDate":"2023-11-02","assignedTo":"EMP 2","status":"Close"}
+	],
+	"iTotalDisplayRecords":32,
+	"sEcho":"1"
+}
