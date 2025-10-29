@@ -12,11 +12,13 @@ import { useEffect } from "react";
 import axios from "axios";
 import VoiceInput from "../../../components/Input/VoiceInput";
 import GreyInput from "../../../components/Input/GreyInput";
+import formReducer from "./reducer";
+import { submitFormData } from "./action";
 const INITIAL_LEAD_OBJ = {
- taskId: "",
-        taskName: "",
-        startDate: "",
-        endDate: "",
+  taskId: "",
+  taskName: "",
+  startDate: "",
+  endDate: "",
 };
 
 function AddLeadModalBody({ closeModal }) {
@@ -24,27 +26,60 @@ function AddLeadModalBody({ closeModal }) {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [leadObj, setLeadObj] = useState(INITIAL_LEAD_OBJ);
+const [formData, setFormData] = useState({
+    dateField: "",  // Initial value for dateField
+  });
 
+  // handleFormValueChange updates the state with the new form data
+  const handleFormValueChange = ({ updateType, value }) => {
+    // For example, if updateType is 'dateField', update the corresponding value
+    setFormData((prevData) => ({
+      ...prevData,
+      [updateType]: value,
+    }));
+  };
+
+// const handleSubmit = (e) => {
+//   console.log(formData);  
+//   dispatch(submitFormData(formData));  
+// };
+// handleSubmit();
+ 
   const saveNewLead = () => {
     // if (leadObj.first_name.trim() === "")
     //   return setErrorMessage("First Name is required!");
     // else if (leadObj.email.trim() === "")
     //   return setErrorMessage("Email id is required!");
     // else {
-      let newLeadObj = {
-        taskId: leadObj.taskId,
-        taskName: leadObj.taskName,
-        startDate: leadObj.startDate,
-        endDate: leadObj.endDate,
-       
-      };
-      dispatch(addNewLead({ newLeadObj }));
-      dispatch(showNotification({ message: "New Lead Added!", status: 1 }));
-      closeModal();
+      
+
+
+    // let newLeadObj = {
+    //   taskId: leadObj.taskId,
+    //   taskName: leadObj.taskName,
+    //   startDate: leadObj.startDate,
+    //   endDate: leadObj.endDate,
+
+    // }
+     const newLeadObj = {
+      taskId: formData.taskId,
+      taskName: formData.taskName,
+      startDate: formData.startDate,
+      endDate: formData.endDate,
+      module: formData.module,
+      activity: formData.activity,
+      priority: formData.priority,
+      status: formData.status,
+    };
+    dispatch(addNewLead({ newLeadObj }));
+console.log("newleaddd:", newLeadObj)
+    dispatch(showNotification({ message: "New Lead Added!", status: 1 }));
+    closeModal();
     // }
   };
 
   const updateFormValue = ({ updateType, value }) => {
+    console.log(":",value)
     setErrorMessage("");
     setLeadObj({ ...leadObj, [updateType]: value });
   };
@@ -202,18 +237,19 @@ function AddLeadModalBody({ closeModal }) {
       value: "pickList",
     },
   ]
-
   return (
     <>
-     <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid md:grid-cols-2 gap-4">
         <div className="flex flex-col">
           <GreyInput
+          name="taskId"
+          value={formData.tasknoOptions}
             options={tasknoOptions}
             defaultValue={"Task Number"}
-            //updateType="first_name"
+            updateType="first_name"
             containerStyle="mt-3"
             labelTitle="Task Number"
-            updateFormValue={updateFormValue}
+            updateFormValue={handleFormValueChange} 
           />
         </div>
         {/* <div className="flex flex-col">
@@ -223,7 +259,7 @@ function AddLeadModalBody({ closeModal }) {
             updateType="first_name"
             containerStyle="mt-3"
             labelTitle="Project ID"
-            updateFormValue={updateFormValue}
+            // updateFormValue={handleFormValueChange} 
           />
         </div> */}
       </div>
@@ -233,15 +269,22 @@ function AddLeadModalBody({ closeModal }) {
             labelTitle="Task Date"
             placeholder="Select Task Date"
             containerStyle="mt-3"
-            defaultValue="taskDate"
+            // defaultValue="taskDate"
+              updateFormValue={handleFormValueChange} 
+             updateType="taskDate"
+  defaultValue={formData.dateField} 
           />
         </div>
         <div className="flex flex-col">
           <DateInput
+          name="endDate"
             labelTitle="End Date"
             placeholder="Select End Date"
             containerStyle="mt-3"
-            defaultValue="endDate"
+            // defaultValue="endDate"
+            
+             updateType="endDate"
+  defaultValue={formData.dateField} 
           />
         </div>
       </div>
@@ -254,7 +297,9 @@ function AddLeadModalBody({ closeModal }) {
             placeholder={loading ? "Loading..." : "Select module"}
             containerStyle="mt-3"
             defaultValue="module"
-            updateFormValue={updateFormValue}
+            updateFormValue={handleFormValueChange} 
+             updateType="first_name"
+
           />
         </div>
         <div className="flex flex-col">
@@ -264,7 +309,7 @@ function AddLeadModalBody({ closeModal }) {
             placeholder="Select activity"
             containerStyle="mt-3"
             defaultValue="activity"
-            updateFormValue={updateFormValue}
+            updateFormValue={handleFormValueChange} 
           />
         </div>
       </div>
@@ -274,21 +319,26 @@ function AddLeadModalBody({ closeModal }) {
 
           <SelectBox
             options={assignToOptions}
+             updateType="first_name"
+
             labelTitle="Assign To"
             placeholder="select assignto"
             containerStyle="mt-3"
             defaultValue="assignTo"
-            updateFormValue={updateFormValue}
+            updateFormValue={handleFormValueChange} 
           />
         </div>
         <div className="flex flex-col">
           <SelectBox
+          name="priorityy"
+          value={formData.priorityOptions}
             options={priorityOptions}
             labelTitle="Priority"
             placeholder="Select priority"
             containerStyle="mt-3"
             defaultValue="Priority"
-            updateFormValue={updateFormValue}
+            
+            updateFormValue={handleFormValueChange} 
           />
 
         </div>
@@ -300,10 +350,11 @@ function AddLeadModalBody({ closeModal }) {
           <SelectBox
             options={statusOptions}
             defaultValue={"Open"}
-            // updateType="first_name"
+            updateType="first_name"
             containerStyle="mt-3"
             labelTitle="Status"
-            updateFormValue={updateFormValue}
+             
+            updateFormValue={handleFormValueChange} 
           />
         </div>
         <div className="flex flex-row">
@@ -313,34 +364,40 @@ function AddLeadModalBody({ closeModal }) {
             containerStyle="mt-3"
             defaultValue="fileinput"
           />
-           <div className="pt-12 size-2xl">
-          <VoiceInput/>
+          <div className="pt-12 size-2xl">
+            <VoiceInput />
+          </div>
         </div>
-        </div>
-       
+
 
       </div>
-      <div className="h-24">
+
+       <div className="h-24">
         <TextAreaInput
           type="textarea"
           defaultValue={"Comments"}
-          // updateType="first_name"
+          updateType="first_name"
           containerStyle="mt-3"
           labelTitle="Comments"
-          updateFormValue={updateFormValue}
+          updateFormValue={handleFormValueChange} 
         />
+      </div>
+      <div>
+        <h2>Form Data:</h2>
+        <pre>{JSON.stringify(formData, null, 2)}</pre>
       </div>
       <ErrorText styleClass="mt-16">{errorMessage}</ErrorText>
       <div className="modal-action md:flex md:justify-end">
         <button className="btn btn-ghost" onClick={() => closeModal()}>
           Cancel
         </button>
-        <button className="btn btn-primary px-6 md:ml-4" onClick={() => saveNewLead()}>
-          Save
+        <button className="btn btn-primary px-6 md:ml-4" onClick={() => saveNewLead()} >
+          Savennnn
         </button>
       </div>
     </>
   );
+
 }
 
 

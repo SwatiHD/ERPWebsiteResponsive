@@ -12,12 +12,15 @@ export const modalSlice = createSlice({
     reducers: {
 
         openModal: (state, action) => {
+  console.log("ppayload", action.payload,"state:", state)
             const {title, bodyType, extraObject, size} = action.payload
+          
             state.isOpen = true
             state.bodyType = bodyType
             state.title = title
             state.size = size || 'md'
             state.extraObject = extraObject
+            console.log("obbb", state.extraObject)
         },
 
         closeModal: (state, action) => {

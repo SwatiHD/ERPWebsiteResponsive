@@ -66,7 +66,7 @@ const VoiceInput = () => {
             onTouchEnd={stopRecording}
             className="mic-button"
           >
-            <i className="mic-icon"><i class="fa-solid fa-microphone-lines"></i></i>
+            <i className="mic-icon"><i className="fa-solid fa-microphone-lines"></i></i>
           </button>
         )}
         {isRecording && (

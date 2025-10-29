@@ -25,7 +25,9 @@ export const leadsSlice = createSlice({
   reducers: {
     addNewLead: (state, action) => {
       let { newLeadObj } = action.payload;
+
       state.leads = [...state.leads, newLeadObj];
+      console.log("dataaaaa:", state.leads);
     },
 
     deleteLead: (state, action) => {

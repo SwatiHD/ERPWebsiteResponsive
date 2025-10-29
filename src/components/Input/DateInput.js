@@ -7,15 +7,30 @@ function DateInput({
   containerStyle,
   defaultValue,
   placeholder,
-  updateFormValue,
-  updateType,
+   updateFormValue = () => {},  // Default to an empty function
+  updateType = "default"
 }) {
   const [value, setValue] = useState(defaultValue);
 
-  const updateInputValue = (val) => {
-    setValue(val);
-    updateFormValue({ updateType, value: val });
+  const convertToDateFormat = (inputDate) => {
+    const regex = /^(0[1-9]|1[0-2])\/([0-2][0-9]|3[01])\/\d{4}$/;
+
+    if (regex.test(inputDate)) {
+      const [month, day, year] = inputDate.split('/');
+      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+    }
+
+    return inputDate;
   };
+
+  const updateInputValue = (val) => {
+    const formattedValue = convertToDateFormat(val);
+    setValue(formattedValue);
+
+    // Use default values if updateFormValue or updateType is missing
+    updateFormValue({ updateType, value: formattedValue });
+  };
+
 
   return (
     <div className={`form-control ${containerStyle}`}>
@@ -27,7 +42,7 @@ function DateInput({
       <input
         type="date"
         value={value}
-        placeholder={placeholder || "YYYY-MM-DD"}
+        placeholder={placeholder || "MM-DD-YYYY"}
         onChange={(e) => updateInputValue(e.target.value)}
         className="input input-bordered"
       />
