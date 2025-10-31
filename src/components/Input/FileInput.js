@@ -9,6 +9,7 @@ function FileInput({
   placeholder,
   updateFormValue,
   updateType,
+  jsoncall,
 }) {
   //   const [value, setValue] = useState(defaultValue);
 

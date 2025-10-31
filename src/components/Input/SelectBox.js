@@ -14,6 +14,7 @@ function SelectBox(props) {
     options,
     updateType,
     updateFormValue,
+    jsoncall,
   } = props;
 
   const [value, setValue] = useState(defaultValue || "");
@@ -41,7 +42,7 @@ function SelectBox(props) {
         value={value}
         onChange={(e) => updateValue(e.target.value)}
       >
-        <option disabled value="PLACEHOLDER">
+        <option disabled value="">
           {placeholder}
         </option>
         {options.map((o, k) => {

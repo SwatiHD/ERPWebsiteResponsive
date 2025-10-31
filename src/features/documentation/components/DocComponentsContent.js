@@ -15,7 +15,9 @@ function DocComponentsContent() {
   const updateFormValue = () => {
     // Dummy function for input text component
   };
-
+const printToConsole=()=>{
+  
+}
   return (
     <>
       <article className="prose">
@@ -91,6 +93,7 @@ function DocComponentsContent() {
           containerStyle="mt-3"
           labelTitle="Label Title"
           updateFormValue={updateFormValue}
+          jsoncall={printToConsole}
         />
         <p>
           {" "}

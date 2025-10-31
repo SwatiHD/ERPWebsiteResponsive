@@ -9,6 +9,7 @@ function GreyInput({
     placeholder,
     updateFormValue,
     updateType,
+    jsoncall,
 }) {
     const [value, setValue] = useState(defaultValue);
 

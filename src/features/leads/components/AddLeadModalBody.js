@@ -14,44 +14,51 @@ import VoiceInput from "../../../components/Input/VoiceInput";
 import GreyInput from "../../../components/Input/GreyInput";
 import formReducer from "./reducer";
 import { submitFormData } from "./action";
+// import { moduleOptions, priorityOptions,statusOptions,tasknoOptions, assignToOptions, activityOptions} from './optionsValue';
 const INITIAL_LEAD_OBJ = {
-  taskId: "",
-  taskName: "",
-  startDate: "",
-  endDate: "",
+      TaskId: "",
+      TaskDate: "",
+      EndDate: "",
+      Module: "",
+      Activity: "",
+      AssignTo: "",
+      Status: "",
+      File:"",
+      Comments:"",
 };
 
 function AddLeadModalBody({ closeModal }) {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [leadObj, setLeadObj] = useState(INITIAL_LEAD_OBJ);
-const [formData, setFormData] = useState({
-    dateField: "",  // Initial value for dateField
-  });
+  // const [leadObj, setLeadObj] = useState(INITIAL_LEAD_OBJ);
+  const [formData, setFormData] = useState(INITIAL_LEAD_OBJ);
 
+  
   // handleFormValueChange updates the state with the new form data
   const handleFormValueChange = ({ updateType, value }) => {
     // For example, if updateType is 'dateField', update the corresponding value
     setFormData((prevData) => ({
       ...prevData,
       [updateType]: value,
+      
     }));
+   
   };
 
-// const handleSubmit = (e) => {
-//   console.log(formData);  
-//   dispatch(submitFormData(formData));  
-// };
-// handleSubmit();
- 
+  // const handleSubmit = (e) => {
+  //   console.log(formData);  
+  //   dispatch(submitFormData(formData));  
+  // };
+  // handleSubmit();
+
   const saveNewLead = () => {
     // if (leadObj.first_name.trim() === "")
     //   return setErrorMessage("First Name is required!");
     // else if (leadObj.email.trim() === "")
     //   return setErrorMessage("Email id is required!");
     // else {
-      
+
 
 
     // let newLeadObj = {
@@ -61,28 +68,34 @@ const [formData, setFormData] = useState({
     //   endDate: leadObj.endDate,
 
     // }
-     const newLeadObj = {
-      taskId: formData.taskId,
-      taskName: formData.taskName,
-      startDate: formData.startDate,
-      endDate: formData.endDate,
-      module: formData.module,
-      activity: formData.activity,
-      priority: formData.priority,
-      status: formData.status,
+    const newLeadObj = {
+      TaskId: formData.TaskId,
+      TaskDate: formData.TaskDate,
+      EndDate: formData.EndDate,
+      Module: formData.Module,
+      Activity: formData.Activity,
+      AssignTo: formData.AssignTo,
+      Priority: formData.Priority,
+      Status: formData.Status,
+      File:formData.File,
     };
+    
     dispatch(addNewLead({ newLeadObj }));
-console.log("newleaddd:", newLeadObj)
+    console.log("newleaddd:", newLeadObj)
+   printToConsole();
     dispatch(showNotification({ message: "New Lead Added!", status: 1 }));
     closeModal();
     // }
+    
   };
 
-  const updateFormValue = ({ updateType, value }) => {
-    console.log(":",value)
-    setErrorMessage("");
-    setLeadObj({ ...leadObj, [updateType]: value });
-  };
+  const printToConsole =()=>{
+    console.log( JSON.stringify(formData, null, 2))
+  }
+  // const updateFormValue = ({ updateType,value }) => {
+  //   setErrorMessage("");
+  //   setLeadObj({ ...leadObj, [updateType]: value });
+  // };
 
   const moduleOptions = [
     {
@@ -242,14 +255,13 @@ console.log("newleaddd:", newLeadObj)
       <div className="grid md:grid-cols-2 gap-4">
         <div className="flex flex-col">
           <GreyInput
-          name="taskId"
-          value={formData.tasknoOptions}
             options={tasknoOptions}
-            defaultValue={"Task Number"}
-            updateType="first_name"
+            updateType="TaskNumber"
             containerStyle="mt-3"
             labelTitle="Task Number"
-            updateFormValue={handleFormValueChange} 
+            value={formData.TaskId}
+            updateFormValue={handleFormValueChange}
+            defaultValue="TaskId"
           />
         </div>
         {/* <div className="flex flex-col">
@@ -267,49 +279,44 @@ console.log("newleaddd:", newLeadObj)
         <div className="flex flex-col">
           <DateInput
             labelTitle="Task Date"
-            placeholder="Select Task Date"
-            containerStyle="mt-3"
-            // defaultValue="taskDate"
-              updateFormValue={handleFormValueChange} 
-             updateType="taskDate"
-  defaultValue={formData.dateField} 
+            containerStyle="mt-3" 
+            updateType="taskDate"
+            value={formData.TaskDate}
+            updateFormValue={handleFormValueChange}
+            
           />
         </div>
         <div className="flex flex-col">
           <DateInput
-          name="endDate"
             labelTitle="End Date"
-            placeholder="Select End Date"
             containerStyle="mt-3"
-            // defaultValue="endDate"
-            
-             updateType="endDate"
-  defaultValue={formData.dateField} 
+            updateFormValue={handleFormValueChange}
+            updateType="endDate"
+            value={formData.EndDate}
           />
         </div>
       </div>
       <div className="grid md:grid-cols-2 gap-4">
         <div className="flex flex-col">
-
           <SelectBox
             options={moduleOptions}
             labelTitle="Module"
-            placeholder={loading ? "Loading..." : "Select module"}
             containerStyle="mt-3"
-            defaultValue="module"
-            updateFormValue={handleFormValueChange} 
-             updateType="first_name"
-
+            updateFormValue={handleFormValueChange}
+            updateType="module"
+             value={formData.Module}
+             defaultValue="module"
           />
         </div>
         <div className="flex flex-col">
           <SelectBox
             options={activityOptions}
             labelTitle="Activity"
-            placeholder="Select activity"
             containerStyle="mt-3"
+            updateFormValue={handleFormValueChange}
+            updateType="activity"
+             value={formData.Activity}
             defaultValue="activity"
-            updateFormValue={handleFormValueChange} 
           />
         </div>
       </div>
@@ -319,26 +326,25 @@ console.log("newleaddd:", newLeadObj)
 
           <SelectBox
             options={assignToOptions}
-             updateType="first_name"
-
             labelTitle="Assign To"
-            placeholder="select assignto"
+            placeholder="Select AssignTo"
             containerStyle="mt-3"
+            updateFormValue={handleFormValueChange}
+            updateType="AssignTo"
+             value={formData.AssignTo}
             defaultValue="assignTo"
-            updateFormValue={handleFormValueChange} 
           />
         </div>
         <div className="flex flex-col">
           <SelectBox
-          name="priorityy"
-          value={formData.priorityOptions}
+            name="priorityy"
             options={priorityOptions}
             labelTitle="Priority"
-            placeholder="Select priority"
             containerStyle="mt-3"
-            defaultValue="Priority"
-            
-            updateFormValue={handleFormValueChange} 
+            updateFormValue={handleFormValueChange}
+            updateType="priority"
+            value={formData.Priority}
+            defaultValue="priority"
           />
 
         </div>
@@ -349,20 +355,22 @@ console.log("newleaddd:", newLeadObj)
 
           <SelectBox
             options={statusOptions}
-            defaultValue={"Open"}
-            updateType="first_name"
             containerStyle="mt-3"
             labelTitle="Status"
-             
-            updateFormValue={handleFormValueChange} 
+            updateFormValue={handleFormValueChange}
+            updateType="status"
+            value={formData.Status}
+            defaultValue="status"
           />
         </div>
         <div className="flex flex-row">
           <FileInput
             labelTitle="Attach File"
-            placeholder="Choose a file"
             containerStyle="mt-3"
             defaultValue="fileinput"
+            updateType="file"
+            value={formData.File}
+            
           />
           <div className="pt-12 size-2xl">
             <VoiceInput />
@@ -372,19 +380,19 @@ console.log("newleaddd:", newLeadObj)
 
       </div>
 
-       <div className="h-24">
+      <div className="h-24">
         <TextAreaInput
           type="textarea"
-          defaultValue={"Comments"}
-          updateType="first_name"
           containerStyle="mt-3"
           labelTitle="Comments"
-          updateFormValue={handleFormValueChange} 
+          updateFormValue={handleFormValueChange}
+          updateType="comment"
+          value={formData.Comment}
+          defaultValue="comment"
         />
       </div>
-      <div>
-        <h2>Form Data:</h2>
-        <pre>{JSON.stringify(formData, null, 2)}</pre>
+        
+  <div onClick={printToConsole} >{JSON.stringify(formData, null, 2)}
       </div>
       <ErrorText styleClass="mt-16">{errorMessage}</ErrorText>
       <div className="modal-action md:flex md:justify-end">

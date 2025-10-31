@@ -113,6 +113,13 @@ function Leads() {
                         <TrashIcon className="w-5" />
                       </button>
                     </td>
+                    <td>
+                      <button
+                        className="badge badge-outline badge-info"
+                        onClick={() => deleteCurrentLead(k)}
+                        >Update
+                      </button>
+                    </td>
                   </tr>
                 ))}
             </tbody>
