@@ -42,7 +42,7 @@ function SelectBox(props) {
         value={value}
         onChange={(e) => updateValue(e.target.value)}
       >
-        <option disabled value="">
+        <option disabled value="PLACEHOLDER">
           {placeholder}
         </option>
         {options.map((o, k) => {

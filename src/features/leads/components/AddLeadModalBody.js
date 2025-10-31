@@ -15,34 +15,50 @@ import GreyInput from "../../../components/Input/GreyInput";
 import formReducer from "./reducer";
 import { submitFormData } from "./action";
 // import { moduleOptions, priorityOptions,statusOptions,tasknoOptions, assignToOptions, activityOptions} from './optionsValue';
-const INITIAL_LEAD_OBJ = {
-      TaskId: "",
-      TaskDate: "",
-      EndDate: "",
-      Module: "",
-      Activity: "",
-      AssignTo: "",
-      Status: "",
-      File:"",
-      Comments:"",
-};
+// const INITIAL_LEAD_OBJ = {
+//    TaskId: "",
+//       TaskDate: "",
+//       EndDate: "",
+//       Module: "",
+//       Activity: "",
+//       AssignTo: "",
+//       Status: "",
+//       File:"",
+//       Comments:"",
+// };
 
-function AddLeadModalBody({ closeModal }) {
+function AddLeadModalBody({ closeModal, initialFormData = {} }) {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   // const [leadObj, setLeadObj] = useState(INITIAL_LEAD_OBJ);
-  const [formData, setFormData] = useState(INITIAL_LEAD_OBJ);
+  const [formData, setFormData] = useState({
+     taskId: "assadasd",
+    taskDate: "",
+    endDate: "",
+    module: "General",
+    activity: "",
+    assignTo: "",
+    status: "",
+    priority: "",
+    file: "",
+    comment: "",
+  }
+  );
 
-  
+  useEffect(() => {
+    if (initialFormData) {
+      setFormData((prevData) => ({
+        ...prevData,
+        ...initialFormData,  // Merge initial data into the formData
+      }));
+    }
+  }, [initialFormData]);
+
   // handleFormValueChange updates the state with the new form data
   const handleFormValueChange = ({ updateType, value }) => {
     // For example, if updateType is 'dateField', update the corresponding value
-    setFormData((prevData) => ({
-      ...prevData,
-      [updateType]: value,
-      
-    }));
+    setFormData((formData) => ({ ...formData, [updateType]: value, }));
    
   };
 
@@ -69,20 +85,20 @@ function AddLeadModalBody({ closeModal }) {
 
     // }
     const newLeadObj = {
-      TaskId: formData.TaskId,
-      TaskDate: formData.TaskDate,
-      EndDate: formData.EndDate,
-      Module: formData.Module,
-      Activity: formData.Activity,
-      AssignTo: formData.AssignTo,
-      Priority: formData.Priority,
-      Status: formData.Status,
-      File:formData.File,
+      TaskId: formData.taskId,
+      TaskDate: formData.taskDate,
+      EndDate: formData.endDate,
+      Module: formData.module,
+      Activity: formData.activity,
+      AssignTo: formData.assignTo,
+      Priority: formData.priority,
+      Status: formData.status,
+      File:formData.file,
     };
     
     dispatch(addNewLead({ newLeadObj }));
     console.log("newleaddd:", newLeadObj)
-   printToConsole();
+    printToConsole();
     dispatch(showNotification({ message: "New Lead Added!", status: 1 }));
     closeModal();
     // }
@@ -200,7 +216,7 @@ function AddLeadModalBody({ closeModal }) {
     {
       id: 1,
       name: "Employee 1",
-      value: "employee1",
+      value: "employee1111",
     }, {
       id: 7,
       name: "Employee 2",
@@ -259,9 +275,9 @@ function AddLeadModalBody({ closeModal }) {
             updateType="TaskNumber"
             containerStyle="mt-3"
             labelTitle="Task Number"
-            value={formData.TaskId}
+            value={formData.taskId}
             updateFormValue={handleFormValueChange}
-            defaultValue="TaskId"
+            
           />
         </div>
         {/* <div className="flex flex-col">
@@ -279,9 +295,10 @@ function AddLeadModalBody({ closeModal }) {
         <div className="flex flex-col">
           <DateInput
             labelTitle="Task Date"
+            placeholder="Select Task Date"
             containerStyle="mt-3" 
             updateType="taskDate"
-            value={formData.TaskDate}
+            value={formData.taskDate}
             updateFormValue={handleFormValueChange}
             
           />
@@ -289,10 +306,11 @@ function AddLeadModalBody({ closeModal }) {
         <div className="flex flex-col">
           <DateInput
             labelTitle="End Date"
+            placeholder="Select End Date"
             containerStyle="mt-3"
             updateFormValue={handleFormValueChange}
             updateType="endDate"
-            value={formData.EndDate}
+            value={formData.endDate}
           />
         </div>
       </div>
@@ -301,22 +319,23 @@ function AddLeadModalBody({ closeModal }) {
           <SelectBox
             options={moduleOptions}
             labelTitle="Module"
+            placeholder={loading ? "Loading..." : "Select module"}
             containerStyle="mt-3"
             updateFormValue={handleFormValueChange}
             updateType="module"
-             value={formData.Module}
-             defaultValue="module"
+             value={formData.module}
+             
           />
         </div>
         <div className="flex flex-col">
           <SelectBox
             options={activityOptions}
             labelTitle="Activity"
+            placeholder="Select activity"
             containerStyle="mt-3"
             updateFormValue={handleFormValueChange}
             updateType="activity"
-             value={formData.Activity}
-            defaultValue="activity"
+            value={formData.activity}
           />
         </div>
       </div>
@@ -327,12 +346,12 @@ function AddLeadModalBody({ closeModal }) {
           <SelectBox
             options={assignToOptions}
             labelTitle="Assign To"
-            placeholder="Select AssignTo"
+            placeholder="select assignto"
             containerStyle="mt-3"
             updateFormValue={handleFormValueChange}
             updateType="AssignTo"
-             value={formData.AssignTo}
-            defaultValue="assignTo"
+             value={formData.assignTo}
+
           />
         </div>
         <div className="flex flex-col">
@@ -340,11 +359,11 @@ function AddLeadModalBody({ closeModal }) {
             name="priorityy"
             options={priorityOptions}
             labelTitle="Priority"
+            placeholder="Select priority"
             containerStyle="mt-3"
             updateFormValue={handleFormValueChange}
             updateType="priority"
-            value={formData.Priority}
-            defaultValue="priority"
+            value={formData.priority}
           />
 
         </div>
@@ -359,18 +378,17 @@ function AddLeadModalBody({ closeModal }) {
             labelTitle="Status"
             updateFormValue={handleFormValueChange}
             updateType="status"
-            value={formData.Status}
-            defaultValue="status"
+            value={formData.status}
           />
         </div>
         <div className="flex flex-row">
           <FileInput
             labelTitle="Attach File"
+            placeholder="Choose a file"
             containerStyle="mt-3"
             defaultValue="fileinput"
             updateType="file"
-            value={formData.File}
-            
+            value={formData.file}
           />
           <div className="pt-12 size-2xl">
             <VoiceInput />
@@ -387,12 +405,11 @@ function AddLeadModalBody({ closeModal }) {
           labelTitle="Comments"
           updateFormValue={handleFormValueChange}
           updateType="comment"
-          value={formData.Comment}
-          defaultValue="comment"
+          value={formData.comment}
+          
         />
       </div>
-        
-  <div onClick={printToConsole} >{JSON.stringify(formData, null, 2)}
+      <div onClick={printToConsole} >{JSON.stringify(formData, null, 2)}
       </div>
       <ErrorText styleClass="mt-16">{errorMessage}</ErrorText>
       <div className="modal-action md:flex md:justify-end">
@@ -400,7 +417,7 @@ function AddLeadModalBody({ closeModal }) {
           Cancel
         </button>
         <button className="btn btn-primary px-6 md:ml-4" onClick={() => saveNewLead()} >
-          Savennnn
+          Save
         </button>
       </div>
     </>
