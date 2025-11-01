@@ -14,16 +14,30 @@ function SelectBox(props) {
     options,
     updateType,
     updateFormValue,
-    jsoncall,
+    value,
   } = props;
 
-  const [value, setValue] = useState(defaultValue || "");
+  const [changedvalue, setChangedValue] = useState(value );
+useEffect(() => {
+    setChangedValue(value); // This ensures the controlled value is always up-to-date
+  }, [value]);
+  // const updateValue = (newValue) => {
+  //   updateFormValue({ updateType, value: newValue });
+  //   setValue(newValue);
+  // };
 
+
+ 
+// const updateValue = (newValue) => {
+//     // Call the updateFormValue function to update formData in parent
+//     updateFormValue({ updateType, value:newValue
+//      });
+//   };
   const updateValue = (newValue) => {
+    // Update the parent with the new value
     updateFormValue({ updateType, value: newValue });
-    setValue(newValue);
+    setChangedValue(newValue);  // Update local state for local rendering
   };
-
   return (
     <div className={`form-control ${containerStyle}`}>
       <label className={`label  ${labelStyle}`}>

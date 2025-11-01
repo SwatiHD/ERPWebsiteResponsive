@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 
 function DateInput({
   labelTitle,
@@ -7,10 +7,17 @@ function DateInput({
   containerStyle,
   defaultValue,
   placeholder,
+  value,
    updateFormValue = () => {},  // Default to an empty function
-  updateType = "default"
+  updateType,
 }) {
-  const [value, setValue] = useState(defaultValue);
+
+  const [changedvalue, setChangedValue] = useState(value );
+  useEffect(() => {
+      setChangedValue(value); // This ensures the controlled value is always up-to-date
+    }, [value]);
+
+  //const [value, setValue] = useState(defaultValue);
 
   const convertToDateFormat = (inputDate) => {
     const regex = /^(0[1-9]|1[0-2])\/([0-2][0-9]|3[01])\/\d{4}$/;
@@ -25,7 +32,7 @@ function DateInput({
 
   const updateInputValue = (val) => {
     const formattedValue = convertToDateFormat(val);
-    setValue(formattedValue);
+    setChangedValue(formattedValue);
 
     // Use default values if updateFormValue or updateType is missing
     updateFormValue({ updateType, value: formattedValue });
